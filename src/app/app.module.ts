@@ -17,6 +17,10 @@ import { FooterComponent } from './navigation/footer/footer.component';
 import { HeaderComponent } from './navigation/header/header.component';
 import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
 import { DataService } from './core/data.service';
+import { FlexLayoutModule, CoreModule } from '@angular/flex-layout';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -36,12 +40,20 @@ import { DataService } from './core/data.service';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule
-
+    MaterialModule,
+    AppRoutingModule,
+    FlexLayoutModule,
+    FormsModule,
+    CoreModule,
+    HttpClientModule,
+    CommonModule
   ],
   providers: [DataService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    ClientModalComponent,
+    CalendarModalComponent
+  ]
 })
 export class AppModule { }
