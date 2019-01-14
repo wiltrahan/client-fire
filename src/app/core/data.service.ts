@@ -18,4 +18,7 @@ export class DataService {
     return this.myClients = this.db.collection('clients').valueChanges();
   }
 
+  addNewClient(client: IClient) {
+    this.db.collection('clients').add(client);
+  }
 }
