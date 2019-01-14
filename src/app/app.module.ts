@@ -18,9 +18,13 @@ import { HeaderComponent } from './navigation/header/header.component';
 import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
 import { DataService } from './core/data.service';
 import { FlexLayoutModule, CoreModule } from '@angular/flex-layout';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { Private } from './../priv/private';
 
 @NgModule({
   declarations: [
@@ -45,9 +49,13 @@ import { CommonModule } from '@angular/common';
     AppRoutingModule,
     FlexLayoutModule,
     FormsModule,
+    ReactiveFormsModule,
     CoreModule,
     HttpClientModule,
-    CommonModule
+    CommonModule,
+    AngularFireModule.initializeApp(Private.firebase),
+    AngularFirestoreModule,
+    AngularFireAuthModule
   ],
   providers: [DataService],
   bootstrap: [AppComponent],

@@ -16,11 +16,11 @@ export class ClientsTableComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   ngOnInit() {
-    // this.dataService.getClients().subscribe(
-    //   data => {
-    //     this.dataSource.data = data;
-    //   }
-    // );
+    this.dataService.fetchMyClients().subscribe(
+      data => {
+        this.dataSource.data = data;
+      }
+    );
   }
 
   ngAfterViewInit() {
