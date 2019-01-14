@@ -1,3 +1,9 @@
-<p>
-  client-modal works!
-</p>
+<h1 mat-dialog-title id="mat-title">{{passedData.title}}</h1>
+<mat-dialog-content>
+  <p>{{ passedData.firstName}} {{passedData.lastName}}
+    has been {{passedData.subtitle}} the Client Stack!
+  </p>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="closeModal()">Close</button>
+</mat-dialog-actions>
