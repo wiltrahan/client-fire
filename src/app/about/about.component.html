@@ -1,3 +1,38 @@
-<p>
-  about works!
-</p>
+<div>
+  <section class="about-card" fxLayout fxLayoutAlign="center">
+  <mat-card fxFlex.xs="100%" fxFlex="800px">
+    
+      <mat-card-title>All About the Client Stack!</mat-card-title>
+      <mat-divider [inset]="true"></mat-divider>
+    <mat-card-content>
+      <p class="about-info">
+        As one of my final projects at the CareerDevs Computer Science Academy,
+        I decided to build a full stack web application that a hair stylist could use 
+        to organize their client information including name, contact, services, last and next appointments,
+        and a calendar to display upcoming appointments. The inspiration for this project came from
+        watching my girlfriend use a book to keep track of her client info and it didn't seem 
+        very practical, nor does she have any backup for that book in the case that something were 
+        to happen to it.  Will I ever get her to use my application? Who knows! But I can say that 
+        I learned a ton about building a REST API with Java Spring, and a front end using Angular as I 
+        developed this application. 
+      </p>
+      
+      
+      <mat-card-title id="list-title">Technologies Used</mat-card-title>
+      <mat-divider [inset]="true"></mat-divider>
+      <mat-list>
+        <mat-list-item class="about-info">Angular</mat-list-item>
+        <mat-list-item class="about-info">Angular Material</mat-list-item>
+        <mat-list-item class="about-info">Angular-Calendar</mat-list-item>
+        <mat-list-item class="about-info">Java 8</mat-list-item>
+        <mat-list-item class="about-info">Spring</mat-list-item>
+        <mat-list-item class="about-info">Maven</mat-list-item>
+        <mat-list-item class="about-info">MySql</mat-list-item>
+        <mat-divider [inset]="true"></mat-divider>
+        <mat-list-item><a href="https://github.com/wiltrahan/client-stack">Front End Repo</a></mat-list-item>
+        <mat-list-item><a href="https://github.com/wiltrahan/client_stackAPI">Back End Repo</a></mat-list-item>
+      </mat-list>
+    </mat-card-content>
+  </mat-card>
+  </section>
+  </div>
