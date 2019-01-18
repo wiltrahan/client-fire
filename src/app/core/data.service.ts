@@ -11,6 +11,8 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class DataService {
   private myClients: Observable<any[]>;
+  private myClient: IClient;
+  private allMyClients: IClient[] = [];
 
   constructor(private db: AngularFirestore) { }
 
@@ -20,5 +22,11 @@ export class DataService {
 
   addNewClient(client: IClient) {
     this.db.collection('clients').add(client);
+  }
+
+  getMyClient(selectedId: string) {
+    return this.myClient = this.allMyClients.find(
+      ex => ex.id === selectedId
+    );
   }
 }

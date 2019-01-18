@@ -1,3 +1,24 @@
-<p>
-  client-info works!
-</p>
+<div *ngIf="client">
+  <section class="client-card" fxLayout fxLayoutAlign="center">
+    <mat-card fxFlex.xs="100%" fxFlex="400px">
+      <mat-card-title>{{client.firstName}} {{client.lastName}}</mat-card-title>
+      <mat-divider [inset]="true"></mat-divider>
+      <mat-list role="list">
+          <mat-list-item role="listitem" class="list-info"><span class="info-type">PHONE:&nbsp;</span> {{client.phone}}</mat-list-item>
+          <mat-list-item role="listitem" class="list-info"><span class="info-type">EMAIL:&nbsp;</span> {{client.email}}</mat-list-item>
+          <mat-list-item role="listitem" class="list-info"><span class="info-type">LAST APPOINTMENT:&nbsp;</span> {{client.lastAppt | date}}</mat-list-item>
+          <mat-list-item role="listitem" class="list-info">
+            <p matLine><span class="info-type">NEXT APPOINTMENT:</span> {{client.nextAppt | date }}</p>
+            <p matLine>{{ client.startTime }} -- {{client.endTime }}</p>
+          </mat-list-item>
+          <mat-list-item class="mat-list-item-word-wrap list-info" role="listitem">
+            <p matLine><span class="info-type">SERVICE:</span> {{client.service}}</p>
+          </mat-list-item>
+      </mat-list>
+        <mat-card-actions fxLayout fxLayoutAlign="center">
+            <a routerLink="/client-edit/{{client.id}}"><button mat-raised-button color="primary"> Edit Client</button></a>
+            <button (click)="goBack()" mat-raised-button color="primary">Back To List</button>
+        </mat-card-actions>
+      </mat-card>
+  </section>
+</div>
