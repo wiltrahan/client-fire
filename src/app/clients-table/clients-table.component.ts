@@ -1,27 +1,45 @@
 import { DataService } from './../core/data.service';
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit, OnDestroy } from '@angular/core';
 import { MatTableDataSource, MatPaginator } from '@angular/material';
-
+import { IClient } from '../shared/interfaces';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-clients-table',
   templateUrl: './clients-table.component.html',
   styleUrls: ['./clients-table.component.scss']
 })
-export class ClientsTableComponent implements OnInit, AfterViewInit {
+export class ClientsTableComponent implements OnInit, AfterViewInit, OnDestroy {
 
   displayedColumns = ['firstName', 'lastName', 'phone'];
   dataSource = new MatTableDataSource();
+  private clientSub: Subscription;
   constructor(private dataService: DataService) {}
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   ngOnInit() {
-    this.dataService.fetchMyClients().subscribe(
+    this.clientSub = this.dataService.fetchMyClients().subscribe(
       data => {
+        console.log(data);
         this.dataSource.data = data;
       }
     );
   }
+
+  // ngOnInit() {
+  //   this.dataService.fetchMyClients()
+  //     .subscribe(snaps => {
+  //       this.dataSource = snaps.map(snap => {
+  //         return <IClient>{
+  //           id: snap.payload.doc.id,
+  //           ...snap.payload.doc.data()
+  //         }
+  //       })
+
+  //       console.log(this.dataSource);
+  //     }
+  //   )
+  // };
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
@@ -29,6 +47,10 @@ export class ClientsTableComponent implements OnInit, AfterViewInit {
 
   doFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  ngOnDestroy() {
+    this.clientSub.unsubscribe();
   }
 
 }

@@ -19,14 +19,15 @@ export class ClientInfoComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // this.getClient();
+    this.getClient();
   }
 
-  // getClient(): void {
-  //   const id = +this.route.snapshot.paramMap.get('id');
-  //   this.dataService.getMyClient(id)
-  //     .subscribe(client => this.client = client);
-  // }
+  getClient(): void {
+    // const id = this.route.snapshot.paramMap.get('id');
+    // this.dataService.getMyClient(id);
+    // .subscribe(client => this.client = client);
+    this.client = this.route.snapshot.data['id'];
+  }
 
   
 
