@@ -25,8 +25,12 @@ export class ClientInfoComponent implements OnInit {
 
   getClient(): void {
     const id = this.route.snapshot.paramMap.get('id');
-    this.client = this.dataService.getMyClient(id);
-    console.log('funny ' + this.client);
+    // this.client = this.dataService.getMyClient(id);
+    // console.log('funny ' + this.client);
+    this.dataService.getMyClient(id).subscribe(data => {
+      this.client = data;
+      console.log('client: ' + this.client);
+    });
   }
 
   
