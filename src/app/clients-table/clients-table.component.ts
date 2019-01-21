@@ -27,7 +27,7 @@ export class ClientsTableComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   // ngOnInit() {
-  //   this.dataService.fetchMyClients()
+  //   this.clientSub = this.dataService.fetchMyClients()
   //     .subscribe(snaps => {
   //       this.dataSource = snaps.map(snap => {
   //         return <IClient>{

@@ -11,13 +11,21 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class DataService {
   private myClients: Observable<any[]>;
-  private myClient;
+  private myClient: IClient;
   private allMyClients: IClient[] = [];
 
   constructor(private db: AngularFirestore) { }
 
   fetchMyClients() {
-    return this.myClients = this.db.collection('clients').valueChanges();
+    // return this.myClients = this.db.collection('clients').valueChanges();
+    this.myClients = this.db.collection('clients').snapshotChanges().pipe(
+      map(clients => clients.map(a => {
+        const data = a.payload.doc.data() as IClient;
+        const id = a.payload.doc.id;
+        return { id, ...data };
+      }))
+    );
+    return this.myClients;
   }
 
   addNewClient(client: IClient) {
@@ -30,8 +38,19 @@ export class DataService {
   //   );
   // }
 
-  getMyClient(selectedId: string) {
-    // return this.myClient = this.db.collection('clients').doc(selectedId);
-    return this.myClient = this.db.collection('clients', selectedId => selectedId.where('id', '==', selectedId));
+  getMyClient(selectedId: string) {  
+    this.db.collection('clients').doc(selectedId).ref.get().then(function(doc) {
+      if (doc.exists) {
+        this.myClient = doc.data();
+        console.log('ClientData: ', this.myClient);
+        return this.myClient;
+      } else {
+        console.log('No Client');
+        return 'crap';
+      }
+    })
+    return this.myClient;
   }
+  
+  
 }

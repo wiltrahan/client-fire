@@ -3,6 +3,7 @@ import { IClient } from './../shared/interfaces';
 import { DataService } from './../core/data.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-client-info',
@@ -23,10 +24,9 @@ export class ClientInfoComponent implements OnInit {
   }
 
   getClient(): void {
-    // const id = this.route.snapshot.paramMap.get('id');
-    // this.dataService.getMyClient(id);
-    // .subscribe(client => this.client = client);
-    this.client = this.route.snapshot.data['id'];
+    const id = this.route.snapshot.paramMap.get('id');
+    this.client = this.dataService.getMyClient(id);
+    console.log('funny ' + this.client);
   }
 
   
