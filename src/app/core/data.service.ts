@@ -24,20 +24,6 @@ export class DataService {
     return this.myClients;
   }
 
-  addClient(client: IClient) {
-    this.db.collection('clients').add(client);
-  }
-
-  // getClient(selectedId: string): Observable<IClient> {
-  //   this.clientDoc = this.db.doc(`clients/${selectedId}`);
-  //   this.myClient = this.clientDoc.valueChanges();
-  //   return this.myClient;
-  // }
-
-  updateClient(selectedId: string, client: IClient) {
-    this.clientDoc = this.db.doc(`clients/${selectedId}`);
-  }
-
   getClient(selectedId: string) {
     this.clientDoc = this.db.doc(`clients/${selectedId}`);
     this.snapClient = this.clientDoc.snapshotChanges().pipe(
@@ -49,4 +35,15 @@ export class DataService {
     )
     return this.snapClient;
   }
+
+  addClient(client: IClient) {
+    this.db.collection('clients').add(client);
+  }
+
+  updateClient(client: IClient) {
+    this.clientDoc = this.db.doc(`clients/${client.id}`);
+    console.log(this.clientDoc);
+  }
+
+  
 }
