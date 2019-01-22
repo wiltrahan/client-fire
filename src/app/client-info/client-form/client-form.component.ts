@@ -25,7 +25,7 @@ export class ClientFormComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    this.dataService.addNewClient(form.value);
+    this.dataService.addClient(form.value);
       // .subscribe(data => {
       //   this.onSuccess(data);
       // });

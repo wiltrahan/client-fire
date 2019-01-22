@@ -3,32 +3,28 @@
     <mat-card fxFlex.xs="100%" fxFlex="400px">
       <mat-card-title>{{client.firstName}} {{client.lastName}}</mat-card-title>
       <mat-divider [inset]="true"></mat-divider>
-      <mat-list role="list">
-          <mat-list-item role="listitem" class="list-info">
-            <p matLine>PHONE:</p>
-            <p matLine>{{client.phone}}</p>
-          </mat-list-item>
-
-          <mat-list-item role="listitem" class="list-info">
-            <p matLine>EMAIL:</p>
-            <p matLine>{{client.email}}</p>
-          </mat-list-item>
-          
-          <mat-list-item role="listitem" class="list-info">
-            <p matLine>NEXT APPOINTMENT:</p>
-            <p matLine>{{ client.nextAppt.toDate() | date: 'EEEE, MMMM d, y, \'at\' h:mm a' }}</p>
-          </mat-list-item>
-          
-
-          <mat-list-item class="mat-list-item-word-wrap list-info" role="listitem">
-            <p matLine>SERVICE:</p>
-            <p matLine>{{client.service}}</p>
-          </mat-list-item>
+      <mat-list role="list">    
+        <mat-list-item role="listitem" class="list-info">
+          <p matLine>PHONE:</p>
+          <p matLine>{{client.phone}}</p>
+        </mat-list-item>
+        <mat-list-item role="listitem" class="list-info">
+          <p matLine>EMAIL:</p>
+          <p matLine>{{client.email}}</p>
+        </mat-list-item>
+        <mat-list-item role="listitem" class="list-info">
+          <p matLine>NEXT APPOINTMENT:</p>
+          <p matLine>{{ client.nextAppt.toDate() | date: 'EEEE, MMMM d, y, \'at\' h:mm a' }}</p>
+        </mat-list-item>
+        <mat-list-item class="mat-list-item-word-wrap list-info" role="listitem">
+          <p matLine>SERVICE:</p>
+          <p matLine>{{client.service}}</p>
+        </mat-list-item>
       </mat-list>
-        <mat-card-actions fxLayout fxLayoutAlign="center">
-            <a routerLink="/client-edit/{{client.id}}"><button mat-raised-button color="primary"> Edit Client</button></a>
-            <button (click)="goBack()" mat-raised-button color="primary">Back To List</button>
-        </mat-card-actions>
-      </mat-card>
+      <mat-card-actions fxLayout fxLayoutAlign="center">
+          <a routerLink="/client-edit/{{client.id}}"><button mat-raised-button color="primary"> Edit Client</button></a>
+          <button (click)="goBack()" mat-raised-button color="primary">Back To List</button>
+      </mat-card-actions>
+    </mat-card>
   </section>
 </div>

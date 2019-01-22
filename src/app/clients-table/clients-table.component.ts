@@ -18,7 +18,7 @@ export class ClientsTableComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   ngOnInit() {
-    this.clientSub = this.dataService.fetchMyClients().subscribe(
+    this.clientSub = this.dataService.fetchClients().subscribe(
       data => {
         console.log(data);
         this.dataSource.data = data;

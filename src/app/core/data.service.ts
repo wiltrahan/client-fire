@@ -8,11 +8,12 @@ import { Observable } from 'rxjs';
 export class DataService {
   private myClients: Observable<any[]>;
   private myClient: Observable<IClient>;
-  private allMyClients: IClient[] = [];
-  private noteDoc: AngularFirestoreDocument<IClient>;
+  private clientDoc: AngularFirestoreDocument<IClient>;
+  private editedClient: IClient;
   constructor(private db: AngularFirestore) { }
-
-  fetchMyClients() {
+  private snapClient: Observable<any>;
+  
+  fetchClients() {
     this.myClients = this.db.collection('clients').snapshotChanges().pipe(
       map(clients => clients.map(a => {
         const data = a.payload.doc.data() as IClient;
@@ -23,15 +24,29 @@ export class DataService {
     return this.myClients;
   }
 
-  addNewClient(client: IClient) {
+  addClient(client: IClient) {
     this.db.collection('clients').add(client);
   }
 
-  getMyClient(selectedId: string): Observable<IClient> {
-    this.noteDoc = this.db.doc(`clients/${selectedId}`);
-    this.myClient = this.noteDoc.valueChanges();
-    return this.myClient;
+  // getClient(selectedId: string): Observable<IClient> {
+  //   this.clientDoc = this.db.doc(`clients/${selectedId}`);
+  //   this.myClient = this.clientDoc.valueChanges();
+  //   return this.myClient;
+  // }
+
+  updateClient(selectedId: string, client: IClient) {
+    this.clientDoc = this.db.doc(`clients/${selectedId}`);
   }
-  
-  
+
+  getClient(selectedId: string) {
+    this.clientDoc = this.db.doc(`clients/${selectedId}`);
+    this.snapClient = this.clientDoc.snapshotChanges().pipe(
+      map(client => {
+        const data = client.payload.data() as IClient;
+        const id = client.payload.id
+        return { id, ...data };
+      })
+    )
+    return this.snapClient;
+  }
 }

@@ -27,8 +27,8 @@ export class ClientInfoComponent implements OnInit, OnDestroy {
 
   getClient(): void {
     const id = this.route.snapshot.paramMap.get('id');
-    this.clientSubscription = this.dataService.getMyClient(id).subscribe(data => {
-      this.client = data;
+    this.clientSubscription = this.dataService.getClient(id).subscribe(data => {
+      this.client = data;   
     });
   }
 

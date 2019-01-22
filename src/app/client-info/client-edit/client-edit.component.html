@@ -1,3 +1,48 @@
-<p>
-  client-edit works!
-</p>
+<div *ngIf="client">
+    <section >
+      <form id="edit-form" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px" #f="ngForm">
+        
+        <mat-form-field>
+          <input type="text" matInput placeholder="First Name" [(ngModel)]="client.firstName" name="firstName">
+        </mat-form-field>
+        <mat-form-field>
+          <input type="text" matInput placeholder="Last Name"  [(ngModel)]="client.lastName" name="lastName">
+        </mat-form-field>
+        <mat-form-field>
+          <input type="text" matInput placeholder="Phone" [(ngModel)]="client.phone" name="phone">
+        </mat-form-field>
+        <mat-form-field>
+          <input type="email" matInput placeholder="Email" [(ngModel)]="client.email" name="email">
+        </mat-form-field>
+        <mat-form-field>
+            <textarea matInput placeholder="Service" [(ngModel)]="client.service" name="service"></textarea>
+        </mat-form-field>
+        
+        <mat-form-field>
+          <input matInput [matDatepicker]="lastAppt" placeholder="Last Appointment" [(ngModel)]="client.lastAppt" name="lastAppt">
+          <mat-datepicker-toggle matSuffix [for]="lastAppt"></mat-datepicker-toggle>
+          <mat-datepicker #lastAppt></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput [matDatepicker]="nextAppt" placeholder="Next Appointment" [(ngModel)]="client.nextAppt" name="nextAppt">
+          <mat-datepicker-toggle matSuffix [for]="nextAppt"></mat-datepicker-toggle>
+          <mat-datepicker #nextAppt></mat-datepicker>
+        </mat-form-field>
+        
+        <mat-form-field>
+          <input type="time" matInput placeholder="Start Time" [(ngModel)]="client.startTime" name="startTime">
+        </mat-form-field>
+        <mat-form-field>
+          <input type="time" matInput placeholder="End Time" [(ngModel)]="client.endTime" name="endTime">
+        </mat-form-field>
+        
+        <div class="edit-buttons" fxLayout fxLayoutAlign="center">
+          <button (click)="editClient()" mat-raised-button color="primary">Save Changes</button>
+          <div class="divider"></div>
+          <button (click)="goBack()" mat-raised-button color="primary">Back To Client</button>
+          <div class="divider"></div>
+          <button (click)="deleteClient()" mat-raised-button color="primary">Delete Client</button>
+        </div>
+      </form>
+    </section>
+  </div>
