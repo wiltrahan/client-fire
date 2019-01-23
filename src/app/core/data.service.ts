@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { IClient } from '../shared/interfaces';
 import { map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 @Injectable()
 export class DataService {
@@ -40,10 +40,8 @@ export class DataService {
     this.db.collection('clients').add(client);
   }
 
-  updateClient(client: IClient) {
-    this.clientDoc = this.db.doc(`clients/${client.id}`);
-    console.log(this.clientDoc);
+  updateClient(client: IClient):Observable<any> {
+   return of(this.db.doc(`clients/${client.id}`).update(client));
   }
 
-  
 }

@@ -33,13 +33,19 @@ export class ClientEditComponent implements OnInit, OnDestroy {
       .subscribe(client => this.client = client);
   }
 
-  editClient() {
+  editClient(): void {
     const id = this.route.snapshot.paramMap.get('id');
-    this.dataService.updateClient(this.client);
+    this.clientSubscription = this.dataService.updateClient(this.client)
+      .subscribe(
+        data => {
+          alert('Update successful for ' + this.client.firstName + ' ' + this.client.lastName);
+          this.goBack(id);
+        }
+      );
   }
 
-  goBack() {
-    const id = this.route.snapshot.paramMap.get('id');
+  goBack(id: string) {
+    // const id = this.route.snapshot.paramMap.get('id');
     this.router.navigateByUrl('client-info/' + id);
   }
 
