@@ -14,7 +14,7 @@
         </mat-list-item>
         <mat-list-item role="listitem" class="list-info">
           <p matLine>NEXT APPOINTMENT:</p>
-          <p matLine>{{ client.nextAppt.toDate() | date: 'fullDate' }}</p>
+          <p matLine>{{ client.nextAppt?.toDate() | date: 'fullDate' }}</p>
           <p matLine>{{ client.startTime }} to {{ client.endTime }}</p>
         </mat-list-item>
         <mat-list-item class="mat-list-item-word-wrap list-info" role="listitem">

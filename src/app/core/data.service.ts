@@ -44,4 +44,8 @@ export class DataService {
    return of(this.db.doc(`clients/${client.id}`).update(client));
   }
 
+  deleteClient(client: IClient):Observable<any> {
+    return of(this.db.doc(`clients/${client.id}`).delete());
+  }
+
 }

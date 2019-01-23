@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material';
 import { DataService } from '../../core/data.service';
 import { Subscription } from 'rxjs';
+import { ClientModalComponent } from '../client-modal/client-modal.component';
 
 @Component({
   selector: 'app-client-edit',
@@ -42,6 +43,23 @@ export class ClientEditComponent implements OnInit, OnDestroy {
           this.goBack(id);
         }
       );
+  }
+
+  deleteClient() {
+    this.clientSubscription = this.dataService.deleteClient(this.client).subscribe();
+    this.onSuccess(this.client);
+  }
+
+  onSuccess(client: IClient) {
+    this.dialog.open(ClientModalComponent, {
+      data: {
+        title: 'Deleted',
+        subtitle: 'deleted from',
+        firstName: client.firstName,
+        lastName: client.lastName
+      }
+    });
+    this.router.navigateByUrl('/');
   }
 
   goBack(id: string) {
