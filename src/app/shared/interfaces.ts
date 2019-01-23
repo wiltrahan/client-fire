@@ -6,4 +6,6 @@ export interface IClient {
   email: string;
   service: string;
   nextAppt?: Date;
+  startTime?: string;
+  endTime?: string;
 }

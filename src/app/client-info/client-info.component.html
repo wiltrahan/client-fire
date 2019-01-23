@@ -14,7 +14,8 @@
         </mat-list-item>
         <mat-list-item role="listitem" class="list-info">
           <p matLine>NEXT APPOINTMENT:</p>
-          <p matLine>{{ client.nextAppt.toDate() | date: 'EEEE, MMMM d, y, \'at\' h:mm a' }}</p>
+          <p matLine>{{ client.nextAppt.toDate() | date: 'fullDate' }}</p>
+          <p matLine>{{ client.startTime }} to {{ client.endTime }}</p>
         </mat-list-item>
         <mat-list-item class="mat-list-item-word-wrap list-info" role="listitem">
           <p matLine>SERVICE:</p>
@@ -23,7 +24,7 @@
       </mat-list>
       <mat-card-actions fxLayout fxLayoutAlign="center">
           <a routerLink="/client-edit/{{client.id}}"><button mat-raised-button color="primary"> Edit Client</button></a>
-          <button (click)="goBack()" mat-raised-button color="primary">Back To List</button>
+          <button [routerLink]="['']" mat-raised-button color="primary">Back To List</button>
       </mat-card-actions>
     </mat-card>
   </section>

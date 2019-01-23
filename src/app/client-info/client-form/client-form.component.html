@@ -7,30 +7,25 @@
       <input type="text" matInput placeholder="Last Name" ngModel name="lastName">
     </mat-form-field>
     <mat-form-field color="accent">
-        <input type="text" matInput placeholder="Phone" ngModel name="phone">
+      <input type="text" matInput placeholder="Phone" ngModel name="phone">
     </mat-form-field>
     <mat-form-field color="accent">
-        <input type="email" matInput placeholder="Email" ngModel name="email">
+      <input type="email" matInput placeholder="Email" ngModel name="email">
     </mat-form-field>
     <mat-form-field color="accent">
-        <textarea matInput placeholder="Service" ngModel name="service"></textarea>
-    </mat-form-field>
-    <!-- <mat-form-field color="accent">
-        <input matInput [matDatepicker]="lastAppt" placeholder="Last Appointment" ngModel name="lastAppt">
-        <mat-datepicker-toggle matSuffix [for]="lastAppt"></mat-datepicker-toggle>
-        <mat-datepicker #lastAppt></mat-datepicker>
-    </mat-form-field> -->
-   <mat-form-field color="accent">
-        <input matInput [matDatepicker]="nextAppt" placeholder="Next Appointment" ngModel name="nextAppt">
-        <mat-datepicker-toggle matSuffix [for]="nextAppt"></mat-datepicker-toggle>
-        <mat-datepicker #nextAppt></mat-datepicker>     
-    </mat-form-field>
-    <!-- <mat-form-field color="accent">
-        <input type="time" matInput placeholder="Start Time" ngModel name="startTime">
+      <textarea matInput placeholder="Service" ngModel name="service"></textarea>
     </mat-form-field>
     <mat-form-field color="accent">
-        <input type="time" matInput placeholder="End Time" ngModel name="endTime">
-    </mat-form-field> -->
-      <button type="submit" mat-raised-button color="primary">Submit</button>
+      <input matInput [matDatepicker]="nextAppt" placeholder="Next Appointment" ngModel name="nextAppt">
+      <mat-datepicker-toggle matSuffix [for]="nextAppt"></mat-datepicker-toggle>
+      <mat-datepicker #nextAppt></mat-datepicker>     
+    </mat-form-field>
+    <mat-form-field color="accent">
+      <input type="time" matInput placeholder="Start Time" ngModel name="startTime">
+    </mat-form-field>
+    <mat-form-field color="accent">
+      <input type="time" matInput placeholder="End Time" ngModel name="endTime">
+    </mat-form-field>
+    <button type="submit" mat-raised-button color="primary">Submit</button>
   </form>
 </section>
