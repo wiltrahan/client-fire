@@ -1,3 +1,35 @@
-<p>
-  calendar works!
-</p>
+<app-calendar-header
+    [(view)]="view"
+    [(viewDate)]="viewDate">
+</app-calendar-header>
+
+<div class="alert alert-info container">
+  <div [ngSwitch]="view">
+    <span *ngSwitchCase="'month'">Click on a month label to change the view to that month.</span>
+    <span *ngSwitchCase="'week'">Click on a day header to change the view to that day.</span>
+    <span *ngSwitchCase="'day'">Click on month or week to return to that view.</span>
+  </div>
+</div>
+
+<div [ngSwitch]="view" class="container" id="calendar">
+  <mwl-calendar-month-view
+    *ngSwitchCase="'month'"
+    [viewDate]="viewDate"
+    [events]="events"
+    (dayClicked)="viewDate = $event.day.date; view = 'day'"
+    (eventClicked)="eventClicked($event)">
+  </mwl-calendar-month-view>
+  <mwl-calendar-week-view
+    *ngSwitchCase="'week'"
+    [viewDate]="viewDate"
+    [events]="events"
+    (dayHeaderClicked)="viewDate = $event.day.date; view = 'day'"
+    (eventClicked)="eventClicked($event)">
+  </mwl-calendar-week-view>
+  <mwl-calendar-day-view
+    *ngSwitchCase="'day'"
+    [viewDate]="viewDate"
+    [events]="events"
+    (eventClicked)="eventClicked($event)">
+  </mwl-calendar-day-view>
+</div>

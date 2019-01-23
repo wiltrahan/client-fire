@@ -1,3 +1,9 @@
-<p>
-  calendar-modal works!
-</p>
+<h1 mat-dialog-title fxLayout fxLayoutAlign="center">{{passedData.title}}</h1>
+<mat-dialog-content>
+  <p>Time: {{passedData.startTime | date:'shortTime'}}</p>
+  <p>Service: {{passedData.service}} </p>
+  <p>Phone: {{passedData.phone}}</p>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="closeModal()">Close</button>
+</mat-dialog-actions>

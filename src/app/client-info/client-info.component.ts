@@ -46,6 +46,8 @@ export class ClientInfoComponent implements OnInit, OnDestroy {
       time = '10' + minute + am;
     } else if(hour[0] === '1' && hour[1] === '1') {
       time = '11' + minute + am;
+    } else if(hour[0] === '1' && hour[1] === '2') {
+      time = '12' + minute + pm;
     } else {
       time = (parseInt(hour, 10) % 12).toString() + minute + pm;
     }

@@ -1,8 +1,8 @@
 import { DataService } from './../core/data.service';
 import { Component, OnInit, ViewChild, AfterViewInit, OnDestroy } from '@angular/core';
 import { MatTableDataSource, MatPaginator } from '@angular/material';
-import { IClient } from '../shared/interfaces';
 import { Subscription } from 'rxjs';
+
 @Component({
   selector: 'app-clients-table',
   templateUrl: './clients-table.component.html',
@@ -20,7 +20,6 @@ export class ClientsTableComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnInit() {
     this.clientSub = this.dataService.fetchClients().subscribe(
       data => {
-        console.log(data);
         this.dataSource.data = data;
       }
     );

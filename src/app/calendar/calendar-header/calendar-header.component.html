@@ -1,3 +1,45 @@
-<p>
-  calendar-header works!
-</p>
+<div class="row text-center header-info">
+    <div class="col-md-4">
+      <div class="btn-group">
+        <button mat-raised-button color="primary" mwlCalendarPreviousView
+          [view]="view"
+          [(viewDate)]="viewDate"
+          (viewDateChange)="viewDateChange.next(viewDate)">
+          Previous
+        </button>
+        <div class="divider"></div>
+        <button mat-raised-button id="btn-today" mwlCalendarToday
+          [(viewDate)]="viewDate"
+          (viewDateChange)="viewDateChange.next(viewDate)">
+          Today
+        </button>
+        <div class="divider"></div>
+        <button mat-raised-button color="primary" mwlCalendarNextView
+          [view]="view"
+          [(viewDate)]="viewDate"
+          (viewDateChange)="viewDateChange.next(viewDate)">
+          Next
+      </button>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):locale }}</h3>
+    </div>
+    <div class="col-md-4">
+      <div class="btn-group">
+        <button mat-raised-button color="primary" (click)="viewChange.emit('month')" [class.active]="view === 'month'">
+          Month
+        </button>
+        <div class="divider"></div>
+        <button mat-raised-button color="primary" (click)="viewChange.emit('week')" [class.active]="view === 'week'">
+          Week
+        </button>
+        <div class="divider"></div>
+        <button mat-raised-button color="primary" (click)="viewChange.emit('day')" [class.active]="view === 'day'">
+          Day
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  

@@ -63,7 +63,6 @@ export class ClientEditComponent implements OnInit, OnDestroy {
   }
 
   goBack(id: string) {
-    // const id = this.route.snapshot.paramMap.get('id');
     this.router.navigateByUrl('client-info/' + id);
   }
 
