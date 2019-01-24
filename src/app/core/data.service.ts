@@ -6,14 +6,14 @@ import { Observable, of } from 'rxjs';
 
 @Injectable()
 export class DataService {
-  private myClients: Observable<any[]>;
+  private myClients: Observable<IClient[]>;
   private myClient: Observable<IClient>;
   private clientDoc: AngularFirestoreDocument<IClient>;
   private editedClient: IClient;
   constructor(private db: AngularFirestore) { }
   private snapClient: Observable<any>;
   
-  fetchClients() {
+  fetchClients():Observable<IClient[]> {
     this.myClients = this.db.collection('clients').snapshotChanges().pipe(
       map(clients => clients.map(a => {
         const data = a.payload.doc.data() as IClient;

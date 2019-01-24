@@ -31,8 +31,7 @@ export class CalendarComponent implements OnDestroy {
         this.clients = clients;
         this.events = this.clients.map(event => ({
           id: event.id,
-          // start: this.setDateTime(new Date(event.nextAppt), event.startTime),
-          start: new Date(event.nextAppt),
+          start: this.getDate(event.nextAppt),
           title: event.firstName + ' ' + event.lastName,
           service: event.service,
           phone: event.phone
@@ -41,6 +40,12 @@ export class CalendarComponent implements OnDestroy {
       });
       console.log('second ' + this.events);
       return this.events;
+  }
+
+  getDate(next): Date {
+    const seconds = next.seconds * 1000;
+    const fullDate = new Date(seconds);
+    return fullDate;
   }
 
   setDateTime(date, time): Date {
