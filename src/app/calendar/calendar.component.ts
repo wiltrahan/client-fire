@@ -32,6 +32,7 @@ export class CalendarComponent implements OnDestroy {
         this.events = this.clients.map(event => ({
           id: event.id,
           start: this.getDate(event.nextAppt, event.startTime),
+          end: this.getDate(event.nextAppt, event.endTime),
           title: event.firstName + ' ' + event.lastName,
           service: event.service,
           phone: event.phone
