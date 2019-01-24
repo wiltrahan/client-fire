@@ -31,24 +31,18 @@ export class CalendarComponent implements OnDestroy {
         this.clients = clients;
         this.events = this.clients.map(event => ({
           id: event.id,
-          start: this.getDate(event.nextAppt),
+          start: this.getDate(event.nextAppt, event.startTime),
           title: event.firstName + ' ' + event.lastName,
           service: event.service,
           phone: event.phone
         }));
-        console.log(this.events);
       });
-      console.log('second ' + this.events);
       return this.events;
   }
 
-  getDate(next): Date {
-    const seconds = next.seconds * 1000;
+  getDate(nextDate, time): Date {
+    const seconds = nextDate.seconds * 1000;
     const fullDate = new Date(seconds);
-    return fullDate;
-  }
-
-  setDateTime(date, time): Date {
     time = time + ' ';
     const index = time.indexOf(':');
     const index2 = time.indexOf(' ');
@@ -56,10 +50,10 @@ export class CalendarComponent implements OnDestroy {
     const hours = time.substring(0, index);
     const minutes = time.substring(index + 1, index2);
 
-    date.setHours(hours);
-    date.setMinutes(minutes);
-    date.setSeconds('00');
-    return date;
+    fullDate.setHours(hours);
+    fullDate.setMinutes(minutes);
+    fullDate.setSeconds(0o0);
+    return fullDate;
   }
 
   eventClicked({ event }: { event: CalendarEvent }): void {
