@@ -5,9 +5,6 @@ import { CalendarEvent } from 'angular-calendar';
 import { DataService } from '../core/data.service';
 import { MatDialog } from '@angular/material';
 import { Subscription } from 'rxjs';
-
-
-
 @Component({
   selector: 'app-calendar',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -34,12 +31,15 @@ export class CalendarComponent implements OnDestroy {
         this.clients = clients;
         this.events = this.clients.map(event => ({
           id: event.id,
-          start: this.setDateTime(new Date(event.nextAppt), event.startTime),
+          // start: this.setDateTime(new Date(event.nextAppt), event.startTime),
+          start: new Date(event.nextAppt),
           title: event.firstName + ' ' + event.lastName,
           service: event.service,
           phone: event.phone
         }));
+        console.log(this.events);
       });
+      console.log('second ' + this.events);
       return this.events;
   }
 
@@ -61,7 +61,9 @@ export class CalendarComponent implements OnDestroy {
     this.dialog.open(CalendarModalComponent, {
       data: {
         title: event.title,
-        startTime: event.start
+        startTime: event.start,
+        service: event.service,
+        phone: event.phone
       }
     });
   }
