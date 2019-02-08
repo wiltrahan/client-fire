@@ -24,7 +24,6 @@ export class ClientsTableComponent implements OnInit, AfterViewInit, OnDestroy {
       }
     );
   }
-  
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
